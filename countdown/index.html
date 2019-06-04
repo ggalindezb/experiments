@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown timer</title>
+  <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app">
+    <div id="start">
+      <button id="start" @click="start">Start</button>
+    </div>
+
+    <div id="countdown">
+      <div class="division">
+        <div class="count">
+          <span class="value">
+            {{ time.days }}
+          </span>
+          <span class="label">Days</span>
+        </div>
+      </div>
+
+      <div class="division">
+        <div class="count">
+          <span class="value">
+            {{ time.hours }}
+          </span>
+          <span class="label">Hours</span>
+        </div>
+      </div>
+
+      <div class="division">
+        <div class="count">
+          <span class="value">
+            {{ time.minutes }}
+          </span>
+          <span class="label">Minutes</span>
+        </div>
+      </div>
+
+      <div class="division">
+        <div class="count">
+          <span class="value">
+            {{ time.seconds }}
+          </span>
+          <span class="label">Seconds</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="js/app.js" charset="utf-8"></script>
+</html>
