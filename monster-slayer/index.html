@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Monster Slayer</title>
+  <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="css/foundation.min.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="app">
+    <section class="row">
+      <div class="small-6 columns">
+        <h1 class="text-center">YOU</h1>
+        <div class="healthbar">
+          <div class="healthbar text-center" :style="playerHealthBar">
+            {{ player.hp }}
+          </div>
+        </div>
+      </div>
+      <div class="small-6 columns">
+        <h1 class="text-center">MONSTER</h1>
+        <div class="healthbar">
+          <div class="healthbar text-center" :style="monsterHealthBar">
+            {{ monster.hp }}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="row controls" v-if="ongoing">
+      <div class="small-12 columns">
+        <button id="attack" @click="turn('attack')">ATTACK</button>
+        <button id="special-attack" @click="turn('specialAttack')">SPECIAL ATTACK</button>
+        <button id="heal" @click="turn('heal')">HEAL</button>
+        <button id="give-up" @click="turn('giveUp')">GIVE UP</button>
+      </div>
+    </section>
+    <section class="row controls" v-else="ongoing">
+      <div class="small-12 columns">
+        <button id="start-game" @click="newGame">START NEW GAME</button>
+      </div>
+    </section>
+    <section class="row log">
+      <div class="small-12 columns">
+        <ul>
+          <li v-for="event in events">
+            <template v-if="event.action == 'attack'">
+              <div>
+                <span>Attacking {{ event.target }} with {{ event.points }}.</span>
+                <span v-if="event.chance">, Critical hit!</span>
+              </div>
+            </template>
+            <template v-if="event.action == 'specialAttack'">
+              <span>Special attack for {{ event.target }} deals {{ event.points }}</span>
+              <span v-if="event.chance">, Critical hit!</span>
+            </template>
+            <template v-if="event.action == 'heal'">
+              <span>{{ event.target }} heals {{ event.points }} points.</span>
+            </template>
+            <template v-if="event.action == 'giveUp'">
+              <span>{{ event.target }} gives up!</span>
+            </template>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+<script src="app.js" charset="utf-8"></script>
+</html>
